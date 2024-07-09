@@ -1,8 +1,17 @@
 package ru.moonvel;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.Duration;
 import jdk.jfr.Description;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.pageObject.AJAXData;
 import ru.pageObject.ClassAttrPage;
 import ru.pageObject.DynamicIdPage;
 import ru.pageObject.HiddenLayersPage;
@@ -37,12 +46,24 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		hiddenLayersPage.greenButtonClick().blueButtonClick();
 	}
 
+
 	@Test
-	@Description("Загрузка страницы с задержкой")
+	@Description("Нажатие кнопки после загрузки страницы с задержкой")
 	public void loadDelayTest() {
 		MainPage mainPage = new MainPage(driver);
 		LoadDelayPage loadDelayPage = mainPage.goToLoadDelayPage();
 		loadDelayPage.delayButtonClick();
+	}
+
+	@Test
+	@Description("Ожидание ответа с сервера после нажатия кнопки")
+	public void ajaxDataTest() {
+		MainPage mainPage = new MainPage(driver);
+		AJAXData ajaxData = mainPage.goToAJAXPage();
+		ajaxData.ajaxButtonClick();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ajaxData.waitedElement));
+		assertEquals("Data loaded with AJAX get request.", ajaxData.getWaitedWebElement().getText());
 	}
 
 

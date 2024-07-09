@@ -16,6 +16,7 @@ public class MainPage {
 	private final By classAttributeTaskButton = By.xpath("//a[contains(text(), 'Class Attribute')]");
 	private final By hiddenLayersTaskButton = By.xpath("//a[contains(text(), 'Hidden Layers')]");
 	private final By loadDelayTaskButton = By.xpath("//a[contains(text(), 'Load Delay')]");
+	private final By ajaxDataTaskButton = By.xpath("//a[contains(text(), 'AJAX')]");
 
 	public DynamicIdPage goToDynamicIdPage() {
 		driver.findElement(dynamicIdTaskButton).click();
@@ -32,5 +33,9 @@ public class MainPage {
 	public LoadDelayPage goToLoadDelayPage() {
 		driver.findElement(loadDelayTaskButton).click();
 		return new LoadDelayPage(driver);
+	}
+	public AJAXData goToAJAXPage() {
+		driver.findElement(ajaxDataTaskButton).click();
+		return new AJAXData(driver);
 	}
 }

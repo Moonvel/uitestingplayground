@@ -8,9 +8,9 @@ public class BaseTests {
 
 	static WebDriver driver = new ChromeDriver();
 
-	@AfterAll
-	public static void shoutDown() {
-		driver.close();
-	}
+//	@AfterAll
+//	public static void shoutDown() {
+//		driver.close();
+//	}
 
 }
