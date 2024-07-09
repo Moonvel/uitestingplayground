@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.pageObject.AJAXData;
+import ru.pageObject.AJAXDataPage;
 import ru.pageObject.ClassAttrPage;
+import ru.pageObject.ClientSideDelayPage;
 import ru.pageObject.DynamicIdPage;
 import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
@@ -56,11 +57,22 @@ public class UiTestingPlayGroundTests extends BaseTests {
 	@Description("Ожидание ответа с сервера после нажатия кнопки")
 	public void ajaxDataTest() {
 		MainPage mainPage = new MainPage(driver);
-		AJAXData ajaxData = mainPage.goToAJAXPage();
+		AJAXDataPage ajaxData = mainPage.goToAJAXPage();
 		ajaxData.ajaxButtonClick();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ajaxData.waitedElement));
 		assertEquals("Data loaded with AJAX get request.", ajaxData.getWaitedWebElement().getText());
+	}
+
+	@Test
+	@Description("Ожидание отработки скрипта на клиентской стороне")
+	public void clientSideDelayTest() {
+		MainPage mainPage = new MainPage(driver);
+		ClientSideDelayPage clientSideDelayPage = mainPage.goToClientSideDelayPage();
+		clientSideDelayPage.delayButtonClick();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(clientSideDelayPage.successAlert));
+		assertEquals("Data calculated on the client side.", clientSideDelayPage.getSuccessWebElement().getText());
 	}
 
 
