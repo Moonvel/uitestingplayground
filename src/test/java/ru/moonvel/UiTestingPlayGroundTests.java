@@ -1,30 +1,42 @@
 package ru.moonvel;
 
+import jdk.jfr.Description;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import ru.pageObject.ClassAttrPage;
+import ru.pageObject.DynamicIdPage;
+import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.MainPage;
 
 public class UiTestingPlayGroundTests extends BaseTest {
-
 	MainPage mainPage = new MainPage();
+	ClassAttrPage classAttrPage = new ClassAttrPage();
+	DynamicIdPage dynamicIdPage = new DynamicIdPage();
+	HiddenLayersPage hiddenLayersPage = new HiddenLayersPage();
 
 	@Test
+	@Description("Тест кнопки с динамическим ID")
 	public void dynamicIdTaskTest() {
-		mainPage.dynamicIdTask.click();
-		WebElement dynamicIdButton = driver.findElement(By.xpath("//button[@class='btn btn-primary']"));
-		dynamicIdButton.click();
+		driver.findElement(mainPage.dynamicIdTask).click();
+		driver.findElement(dynamicIdPage.dynamicIdButton).click();
 	}
 
 	@Test
+	@Description("Тест кнопки с несколькими классами. Работа с alert")
 	public void classAttributeTest() {
-		mainPage.classAttributeTask.click();
-		WebElement blueAlertButton = driver.findElement(
-				By.xpath("//button[contains(@class, 'btn-primary')]"));
-		blueAlertButton.click();
+		driver.findElement(mainPage.classAttributeTask).click();
+		driver.findElement(classAttrPage.blueAlertButton).click();
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
 	}
+
+	@Test
+	@Description("Тест скрытой кнопки")
+	public void hiddenLayersTest() {
+		driver.findElement(mainPage.hiddenLayersTask).click();
+		driver.findElement(hiddenLayersPage.greenButton).click();
+		driver.findElement(hiddenLayersPage.blueButton).click();
+	}
+
 
 }
