@@ -18,6 +18,8 @@ public class MainPage {
 	private final By loadDelayTaskButton = By.xpath("//a[contains(text(), 'Load Delay')]");
 	private final By ajaxDataTaskButton = By.xpath("//a[contains(text(), 'AJAX')]");
 	private final By clientSideDelayButton = By.xpath("//a[contains(text(), 'Client Side Delay')]");
+	private final By clickButton = By.xpath("//a[contains(text(), 'Click')]");
+
 
 	public DynamicIdPage goToDynamicIdPage() {
 		driver.findElement(dynamicIdTaskButton).click();
@@ -42,5 +44,9 @@ public class MainPage {
 	public ClientSideDelayPage goToClientSideDelayPage() {
 		driver.findElement(clientSideDelayButton).click();
 		return new ClientSideDelayPage(driver);
+	}
+	public ClickPage goToClickPage() {
+		driver.findElement(clickButton).click();
+		return new ClickPage(driver);
 	}
 }

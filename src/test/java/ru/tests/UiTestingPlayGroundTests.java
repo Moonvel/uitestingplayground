@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 import jdk.jfr.Description;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.pageObject.AJAXDataPage;
 import ru.pageObject.ClassAttrPage;
+import ru.pageObject.ClickPage;
 import ru.pageObject.ClientSideDelayPage;
 import ru.pageObject.DynamicIdPage;
 import ru.pageObject.HiddenLayersPage;
@@ -74,6 +76,13 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(clientSideDelayPage.successAlert));
 		assertEquals("Data calculated on the client side.", clientSideDelayPage.getSuccessWebElement().getText());
 	}
-
+	@Test
+	@Description("Тест сломанной некликабельной кнопки")
+	public void clickTest() {
+		MainPage mainPage = new MainPage(driver);
+		ClickPage clickPage = mainPage.goToClickPage();
+		clickPage.domIgnoreButton().click();
+		Assertions.assertEquals("rgba(33, 136, 56, 1)", clickPage.domIgnoreButton().getCssValue("background-color"));
+	}
 
 }
