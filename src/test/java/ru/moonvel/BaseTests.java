@@ -1,6 +1,5 @@
 package ru.moonvel;
 
-import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
