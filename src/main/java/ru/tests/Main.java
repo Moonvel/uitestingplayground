@@ -1,4 +1,4 @@
-package ru.moonvel;
+package ru.tests;
 
 public class Main {
 

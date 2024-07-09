@@ -1,4 +1,4 @@
-package ru.moonvel;
+package ru.tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
