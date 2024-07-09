@@ -17,6 +17,7 @@ import ru.pageObject.DynamicIdPage;
 import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
+import ru.pageObject.ScrollBarPage;
 import ru.pageObject.TextInputPage;
 
 
@@ -93,6 +94,13 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		String message = "Hello World!";
 		textInputPage.inputFormFill(message).updatingButtonElement().click();
 		Assertions.assertEquals(message, textInputPage.updatingButtonElement().getText());
+	}
+	@Test
+	@Description("Проверка нажатия на кнопку, вне видимости")
+	public void scrollBarsTest() {
+		MainPage mainPage = new MainPage(driver);
+		ScrollBarPage scrollBarPage = mainPage.goToScrollBarPage();
+		scrollBarPage.hidingButtonElement().click();
 	}
 
 }

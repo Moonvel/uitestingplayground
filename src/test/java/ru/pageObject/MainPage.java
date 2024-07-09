@@ -20,6 +20,7 @@ public class MainPage {
 	private final By clientSideDelayButton = By.xpath("//a[contains(text(), 'Client Side Delay')]");
 	private final By clickButton = By.xpath("//a[contains(text(), 'Click')]");
 	private final By textInput = By.xpath("//a[contains(text(), 'Text Input')]");
+	private final By scrollbars = By.xpath("//a[contains(text(), 'Scrollbars')]");
 
 
 	public DynamicIdPage goToDynamicIdPage() {
@@ -53,6 +54,10 @@ public class MainPage {
 	public TextInputPage goToTextInputPage() {
 		driver.findElement(textInput).click();
 		return new TextInputPage(driver);
+	}
+	public ScrollBarPage goToScrollBarPage() {
+		driver.findElement(scrollbars).click();
+		return new ScrollBarPage(driver);
 	}
 
 }
