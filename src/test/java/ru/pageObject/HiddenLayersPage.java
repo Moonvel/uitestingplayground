@@ -1,10 +1,25 @@
 package ru.pageObject;
 
 import org.openqa.selenium.By;
-import ru.moonvel.BaseTest;
+import org.openqa.selenium.WebDriver;
 
-public class HiddenLayersPage extends BaseTest {
 
-	public By greenButton = By.xpath("//button[@id='greenButton']");
-	public By blueButton = By.xpath("//button[@id='blueButton']");
+public class HiddenLayersPage {
+	private final WebDriver driver;
+
+	public HiddenLayersPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	private final By greenButton = By.xpath("//button[@id='greenButton']");
+	private final By blueButton = By.xpath("//button[@id='blueButton']");
+
+	public HiddenLayersPage greenButtonClick() {
+		driver.findElement(greenButton).click();
+		return this;
+	}
+	public HiddenLayersPage blueButtonClick() {
+		driver.findElement(blueButton).click();
+		return this;
+	}
 }

@@ -1,11 +1,36 @@
 package ru.pageObject;
 
 import org.openqa.selenium.By;
-import ru.moonvel.BaseTest;
+import org.openqa.selenium.WebDriver;
 
-public class MainPage extends BaseTest {
 
-	public By dynamicIdTask = By.xpath("//a[contains(text(), 'Dynamic ID')]");
-	public By classAttributeTask = By.xpath("//a[contains(text(), 'Class Attribute')]");
-	public By hiddenLayersTask = By.xpath("//a[contains(text(), 'Hidden Layers')]");
+public class MainPage {
+
+	private final WebDriver driver;
+
+	public MainPage(WebDriver driver) {
+		this.driver = driver;
+		driver.navigate().to("http://uitestingplayground.com/");
+	}
+	private final By dynamicIdTaskButton = By.xpath("//a[contains(text(), 'Dynamic ID')]");
+	private final By classAttributeTaskButton = By.xpath("//a[contains(text(), 'Class Attribute')]");
+	private final By hiddenLayersTaskButton = By.xpath("//a[contains(text(), 'Hidden Layers')]");
+	private final By loadDelayTaskButton = By.xpath("//a[contains(text(), 'Load Delay')]");
+
+	public DynamicIdPage goToDynamicIdPage() {
+		driver.findElement(dynamicIdTaskButton).click();
+		return new DynamicIdPage(driver);
+	}
+	public ClassAttrPage goToClassAttributePage() {
+		driver.findElement(classAttributeTaskButton).click();
+		return new ClassAttrPage(driver);
+	}
+	public HiddenLayersPage goToHiddenLayersPage() {
+		driver.findElement(hiddenLayersTaskButton).click();
+		return new HiddenLayersPage(driver);
+	}
+	public LoadDelayPage goToLoadDelayPage() {
+		driver.findElement(loadDelayTaskButton).click();
+		return new LoadDelayPage(driver);
+	}
 }

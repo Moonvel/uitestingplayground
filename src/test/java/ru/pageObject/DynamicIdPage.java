@@ -1,10 +1,20 @@
 package ru.pageObject;
 
 import org.openqa.selenium.By;
-import ru.moonvel.BaseTest;
+import org.openqa.selenium.WebDriver;
 
-public class DynamicIdPage extends BaseTest {
 
-	public By dynamicIdButton = By.xpath("//button[@class='btn btn-primary']");
+public class DynamicIdPage {
 
+	private final WebDriver driver;
+
+	public DynamicIdPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	private final By dynamicIdButton = By.xpath("//button[@class='btn btn-primary']");
+
+	public void dynamicIdButtonClick() {
+		driver.findElement(dynamicIdButton).click();
+	}
 }
