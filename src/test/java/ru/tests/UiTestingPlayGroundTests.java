@@ -17,6 +17,7 @@ import ru.pageObject.DynamicIdPage;
 import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
+import ru.pageObject.TextInputPage;
 
 
 public class UiTestingPlayGroundTests extends BaseTests {
@@ -83,6 +84,15 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		ClickPage clickPage = mainPage.goToClickPage();
 		clickPage.domIgnoreButton().click();
 		Assertions.assertEquals("rgba(33, 136, 56, 1)", clickPage.domIgnoreButton().getCssValue("background-color"));
+	}
+	@Test
+	@Description("Ввод текста в input form")
+	public void textInputTest() {
+		MainPage mainPage = new MainPage(driver);
+		TextInputPage textInputPage = mainPage.goToTextInputPage();
+		String message = "Hello World!";
+		textInputPage.inputFormFill(message).updatingButtonElement().click();
+		Assertions.assertEquals(message, textInputPage.updatingButtonElement().getText());
 	}
 
 }

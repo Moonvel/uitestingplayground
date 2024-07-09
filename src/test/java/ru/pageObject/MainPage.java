@@ -19,6 +19,7 @@ public class MainPage {
 	private final By ajaxDataTaskButton = By.xpath("//a[contains(text(), 'AJAX')]");
 	private final By clientSideDelayButton = By.xpath("//a[contains(text(), 'Client Side Delay')]");
 	private final By clickButton = By.xpath("//a[contains(text(), 'Click')]");
+	private final By textInput = By.xpath("//a[contains(text(), 'Text Input')]");
 
 
 	public DynamicIdPage goToDynamicIdPage() {
@@ -49,4 +50,9 @@ public class MainPage {
 		driver.findElement(clickButton).click();
 		return new ClickPage(driver);
 	}
+	public TextInputPage goToTextInputPage() {
+		driver.findElement(textInput).click();
+		return new TextInputPage(driver);
+	}
+
 }
