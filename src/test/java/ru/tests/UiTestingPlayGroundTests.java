@@ -20,6 +20,7 @@ import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
 import ru.pageObject.ScrollBarPage;
 import ru.pageObject.TextInputPage;
+import ru.pageObject.VerifyTextPage;
 
 
 public class UiTestingPlayGroundTests extends BaseTests {
@@ -109,6 +110,13 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		DynamicTablePage dynamicTablePage = mainPage.goToDynamicTablePage();
 		Assertions.assertEquals(dynamicTablePage.extractedValue(), dynamicTablePage.chromeCpuUsageElement().getText());
+	}
+	@Test
+	@Description("Извлечение элемента по тексту c пробелами в DOM")
+	public void verifyText() {
+		MainPage mainPage = new MainPage(driver);
+		VerifyTextPage verifyTextPage = mainPage.goToVerifyTextPage();
+		Assertions.assertEquals("Welcome UserName!", verifyTextPage.playGroundElement().getText());
 	}
 
 }

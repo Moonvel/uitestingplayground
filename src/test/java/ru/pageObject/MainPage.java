@@ -22,6 +22,7 @@ public class MainPage {
 	private final By textInput = By.xpath("//a[contains(text(), 'Text Input')]");
 	private final By scrollbars = By.xpath("//a[contains(text(), 'Scrollbars')]");
 	private final By dynamicTable = By.xpath("//a[contains(text(), 'Dynamic Table')]");
+	private final By verifyText = By.xpath("//a[contains(text(), 'Verify Text')]");
 
 
 	public DynamicIdPage goToDynamicIdPage() {
@@ -63,6 +64,10 @@ public class MainPage {
 	public DynamicTablePage goToDynamicTablePage() {
 		driver.findElement(dynamicTable).click();
 		return new DynamicTablePage(driver);
+	}
+	public VerifyTextPage goToVerifyTextPage() {
+		driver.findElement(verifyText).click();
+		return new VerifyTextPage(driver);
 	}
 
 }
