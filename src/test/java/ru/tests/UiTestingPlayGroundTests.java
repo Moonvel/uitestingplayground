@@ -19,6 +19,7 @@ import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
 import ru.pageObject.ProgressBarPage;
+import ru.pageObject.SampleAppPage;
 import ru.pageObject.ScrollBarPage;
 import ru.pageObject.TextInputPage;
 import ru.pageObject.VerifyTextPage;
@@ -129,5 +130,14 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		progressBarPage.stopButton().click();
 		Assertions.assertEquals("40", progressBarPage.progressBarElement().getAttribute("aria-valuenow"));
 	}
+	@Test
+	@Description("Заполнение формы входа")
+	public void sampleAppTest() {
+		MainPage mainPage = new MainPage(driver);
+		SampleAppPage sampleAppPage = mainPage.goToSampleAppPage();
+		sampleAppPage.fillLoginForm("admin", "pwd");
+		Assertions.assertEquals("Welcome, admin!", sampleAppPage.successfulLoginElement().getText());
+	}
+
 
 }

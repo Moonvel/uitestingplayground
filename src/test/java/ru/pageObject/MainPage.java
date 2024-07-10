@@ -24,6 +24,7 @@ public class MainPage {
 	private final By dynamicTable = By.xpath("//a[contains(text(), 'Dynamic Table')]");
 	private final By verifyText = By.xpath("//a[contains(text(), 'Verify Text')]");
 	private final By progressBar = By.xpath("//a[contains(text(), 'Progress Bar')]");
+	private final By sampleApp = By.xpath("//a[contains(text(), 'Sample App')]");
 
 
 
@@ -74,6 +75,10 @@ public class MainPage {
 	public ProgressBarPage goToProgressBarPage() {
 		driver.findElement(progressBar).click();
 		return new ProgressBarPage(driver);
+	}
+	public SampleAppPage goToSampleAppPage() {
+		driver.findElement(sampleApp).click();
+		return new SampleAppPage(driver);
 	}
 
 }
