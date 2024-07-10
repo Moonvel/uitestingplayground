@@ -27,6 +27,7 @@ public class MainPage {
 	private final By sampleApp = By.xpath("//a[contains(text(), 'Sample App')]");
 	private final By mouthOver = By.xpath("//a[contains(text(), 'Mouse Over')]");
 	private final By nonBreakingSpace = By.xpath("//a[contains(text(), 'Non-Breaking Space')]");
+	private final By overlappedElement = By.xpath("//a[contains(text(), 'Overlapped Element')]");
 
 
 
@@ -89,6 +90,10 @@ public class MainPage {
 	public NonBreakingSpace goToNonBreakingSpace() {
 		driver.findElement(nonBreakingSpace).click();
 		return new NonBreakingSpace(driver);
+	}
+	public OverlappedElementPage goToOverlappedElementPage() {
+		driver.findElement(overlappedElement).click();
+		return new OverlappedElementPage(driver);
 	}
 
 }

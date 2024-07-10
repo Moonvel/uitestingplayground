@@ -20,6 +20,7 @@ import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
 import ru.pageObject.MouseOverPage;
 import ru.pageObject.NonBreakingSpace;
+import ru.pageObject.OverlappedElementPage;
 import ru.pageObject.ProgressBarPage;
 import ru.pageObject.SampleAppPage;
 import ru.pageObject.ScrollBarPage;
@@ -146,7 +147,6 @@ public class UiTestingPlayGroundTests extends BaseTests {
 	public void mouthOverTest() {
 		MainPage mainPage = new MainPage(driver);
 		MouseOverPage mouseOverPage = mainPage.goToMouseOverPage();
-		Actions actions = new Actions(driver);
 		actions.moveToElement(mouseOverPage.linkElement()).doubleClick().perform();
 		Assertions.assertEquals(2, mouseOverPage.clickCount());
 	}
@@ -156,6 +156,14 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		NonBreakingSpace nonBreakingSpace = mainPage.goToNonBreakingSpace();
 		nonBreakingSpace.button().click();
+	}
+	@Test
+	@Description("Ввода текста в перекрытое поле")
+	public void overlappedElementTest() {
+		MainPage mainPage = new MainPage(driver);
+		OverlappedElementPage overlappedElementPage = mainPage.goToOverlappedElementPage();
+		overlappedElementPage.scrollElementDown(driver, overlappedElementPage.scrollBlockElement());
+		overlappedElementPage.inputName().sendKeys("Name");
 	}
 
 
