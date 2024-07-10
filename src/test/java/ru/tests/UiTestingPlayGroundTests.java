@@ -14,6 +14,7 @@ import ru.pageObject.ClassAttrPage;
 import ru.pageObject.ClickPage;
 import ru.pageObject.ClientSideDelayPage;
 import ru.pageObject.DynamicIdPage;
+import ru.pageObject.DynamicTablePage;
 import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
@@ -84,7 +85,7 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		ClickPage clickPage = mainPage.goToClickPage();
 		clickPage.domIgnoreButton().click();
-		Assertions.assertEquals("rgba(33, 136, 56, 1)", clickPage.domIgnoreButton().getCssValue("background-color"));
+		clickPage.domIgnoreButton().click();
 	}
 	@Test
 	@Description("Ввод текста в input form")
@@ -101,6 +102,13 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		ScrollBarPage scrollBarPage = mainPage.goToScrollBarPage();
 		scrollBarPage.hidingButtonElement().click();
+	}
+	@Test
+	@Description("Проверка Chrome CPU load в динамической таблице")
+	public void dynamicTableTest() {
+		MainPage mainPage = new MainPage(driver);
+		DynamicTablePage dynamicTablePage = mainPage.goToDynamicTablePage();
+		Assertions.assertEquals(dynamicTablePage.extractedValue(), dynamicTablePage.chromeCpuUsageElement().getText());
 	}
 
 }

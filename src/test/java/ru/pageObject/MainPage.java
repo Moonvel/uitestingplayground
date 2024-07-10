@@ -21,6 +21,7 @@ public class MainPage {
 	private final By clickButton = By.xpath("//a[contains(text(), 'Click')]");
 	private final By textInput = By.xpath("//a[contains(text(), 'Text Input')]");
 	private final By scrollbars = By.xpath("//a[contains(text(), 'Scrollbars')]");
+	private final By dynamicTable = By.xpath("//a[contains(text(), 'Dynamic Table')]");
 
 
 	public DynamicIdPage goToDynamicIdPage() {
@@ -58,6 +59,10 @@ public class MainPage {
 	public ScrollBarPage goToScrollBarPage() {
 		driver.findElement(scrollbars).click();
 		return new ScrollBarPage(driver);
+	}
+	public DynamicTablePage goToDynamicTablePage() {
+		driver.findElement(dynamicTable).click();
+		return new DynamicTablePage(driver);
 	}
 
 }
