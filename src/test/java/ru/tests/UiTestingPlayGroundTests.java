@@ -18,6 +18,7 @@ import ru.pageObject.DynamicTablePage;
 import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
+import ru.pageObject.ProgressBarPage;
 import ru.pageObject.ScrollBarPage;
 import ru.pageObject.TextInputPage;
 import ru.pageObject.VerifyTextPage;
@@ -113,10 +114,22 @@ public class UiTestingPlayGroundTests extends BaseTests {
 	}
 	@Test
 	@Description("Извлечение элемента по тексту c пробелами в DOM")
-	public void verifyText() {
+	public void verifyTest() {
 		MainPage mainPage = new MainPage(driver);
 		VerifyTextPage verifyTextPage = mainPage.goToVerifyTextPage();
 		Assertions.assertEquals("Welcome UserName!", verifyTextPage.playGroundElement().getText());
+	}
+	@Test
+	@Description("Тест progressBar")
+	public void progressBarTest() {
+		MainPage mainPage = new MainPage(driver);
+		ProgressBarPage progressBarPage = mainPage.goToProgressBarPage();
+		progressBarPage.startButton().click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.pollingEvery(Duration.ofMillis(100));
+		wait.until(ExpectedConditions.attributeToBe(progressBarPage.progressBarElement(), "aria-valuenow", "40"));
+		progressBarPage.stopButton().click();
+		Assertions.assertEquals("40", progressBarPage.progressBarElement().getAttribute("aria-valuenow"));
 	}
 
 }
