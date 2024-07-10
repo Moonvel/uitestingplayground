@@ -1,4 +1,4 @@
-package ru.pageObject;
+package ru.tests.pageObject;
 
 import java.time.Duration;
 import org.openqa.selenium.By;
