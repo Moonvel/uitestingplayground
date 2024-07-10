@@ -26,6 +26,7 @@ public class MainPage {
 	private final By progressBar = By.xpath("//a[contains(text(), 'Progress Bar')]");
 	private final By sampleApp = By.xpath("//a[contains(text(), 'Sample App')]");
 	private final By mouthOver = By.xpath("//a[contains(text(), 'Mouse Over')]");
+	private final By nonBreakingSpace = By.xpath("//a[contains(text(), 'Non-Breaking Space')]");
 
 
 
@@ -82,8 +83,12 @@ public class MainPage {
 		return new SampleAppPage(driver);
 	}
 	public MouseOverPage goToMouseOverPage() {
-		driver.findElement(mouthOver).click();;
+		driver.findElement(mouthOver).click();
 		return new MouseOverPage(driver);
+	}
+	public NonBreakingSpace goToNonBreakingSpace() {
+		driver.findElement(nonBreakingSpace).click();
+		return new NonBreakingSpace(driver);
 	}
 
 }

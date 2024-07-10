@@ -19,6 +19,7 @@ import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
 import ru.pageObject.MouseOverPage;
+import ru.pageObject.NonBreakingSpace;
 import ru.pageObject.ProgressBarPage;
 import ru.pageObject.SampleAppPage;
 import ru.pageObject.ScrollBarPage;
@@ -148,6 +149,13 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(mouseOverPage.linkElement()).doubleClick().perform();
 		Assertions.assertEquals(2, mouseOverPage.clickCount());
+	}
+	@Test
+	@Description("Тест неразрывного пробела")
+	public void nonBreakingSpaceTest() {
+		MainPage mainPage = new MainPage(driver);
+		NonBreakingSpace nonBreakingSpace = mainPage.goToNonBreakingSpace();
+		nonBreakingSpace.button().click();
 	}
 
 
