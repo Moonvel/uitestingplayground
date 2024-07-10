@@ -7,8 +7,8 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.pageObject.AJAXDataPage;
 import ru.pageObject.ClassAttrPage;
 import ru.pageObject.ClickPage;
@@ -18,6 +18,7 @@ import ru.pageObject.DynamicTablePage;
 import ru.pageObject.HiddenLayersPage;
 import ru.pageObject.LoadDelayPage;
 import ru.pageObject.MainPage;
+import ru.pageObject.MouseOverPage;
 import ru.pageObject.ProgressBarPage;
 import ru.pageObject.SampleAppPage;
 import ru.pageObject.ScrollBarPage;
@@ -137,6 +138,16 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		SampleAppPage sampleAppPage = mainPage.goToSampleAppPage();
 		sampleAppPage.fillLoginForm("admin", "pwd");
 		Assertions.assertEquals("Welcome, admin!", sampleAppPage.successfulLoginElement().getText());
+	}
+
+	@Test
+	@Description("Навести мышку на элемент, нажать два раза")
+	public void mouthOverTest() {
+		MainPage mainPage = new MainPage(driver);
+		MouseOverPage mouseOverPage = mainPage.goToMouseOverPage();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(mouseOverPage.linkElement()).doubleClick().perform();
+		Assertions.assertEquals(2, mouseOverPage.clickCount());
 	}
 
 
