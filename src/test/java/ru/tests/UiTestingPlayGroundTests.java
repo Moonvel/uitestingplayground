@@ -25,6 +25,7 @@ import ru.pageObject.VerifyTextPage;
 
 
 public class UiTestingPlayGroundTests extends BaseTests {
+
 	@Test
 	@Description("Тест кнопки с динамическим ID")
 	public void dynamicIdTaskTest() {
@@ -66,7 +67,6 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		AJAXDataPage ajaxData = mainPage.goToAJAXPage();
 		ajaxData.ajaxButtonClick();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ajaxData.waitedElement));
 		assertEquals("Data loaded with AJAX get request.", ajaxData.getWaitedWebElement().getText());
 	}
@@ -77,7 +77,6 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		ClientSideDelayPage clientSideDelayPage = mainPage.goToClientSideDelayPage();
 		clientSideDelayPage.delayButtonClick();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(clientSideDelayPage.successAlert));
 		assertEquals("Data calculated on the client side.", clientSideDelayPage.getSuccessWebElement().getText());
 	}
@@ -125,8 +124,7 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		ProgressBarPage progressBarPage = mainPage.goToProgressBarPage();
 		progressBarPage.startButton().click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.pollingEvery(Duration.ofMillis(100));
+		wait.pollingEvery(Duration.ofMillis(50));
 		wait.until(ExpectedConditions.attributeToBe(progressBarPage.progressBarElement(), "aria-valuenow", "40"));
 		progressBarPage.stopButton().click();
 		Assertions.assertEquals("40", progressBarPage.progressBarElement().getAttribute("aria-valuenow"));
