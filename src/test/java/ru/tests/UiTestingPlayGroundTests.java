@@ -7,7 +7,9 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.pageObject.AJAXDataPage;
 import ru.pageObject.ClassAttrPage;
@@ -24,6 +26,7 @@ import ru.pageObject.OverlappedElementPage;
 import ru.pageObject.ProgressBarPage;
 import ru.pageObject.SampleAppPage;
 import ru.pageObject.ScrollBarPage;
+import ru.pageObject.ShadowDomPage;
 import ru.pageObject.TextInputPage;
 import ru.pageObject.VerifyTextPage;
 
@@ -128,7 +131,7 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		MainPage mainPage = new MainPage(driver);
 		ProgressBarPage progressBarPage = mainPage.goToProgressBarPage();
 		progressBarPage.startButton().click();
-		wait.pollingEvery(Duration.ofMillis(50));
+		wait.pollingEvery(Duration.ofMillis(10));
 		wait.until(ExpectedConditions.attributeToBe(progressBarPage.progressBarElement(), "aria-valuenow", "40"));
 		progressBarPage.stopButton().click();
 		Assertions.assertEquals("40", progressBarPage.progressBarElement().getAttribute("aria-valuenow"));
@@ -165,6 +168,14 @@ public class UiTestingPlayGroundTests extends BaseTests {
 		overlappedElementPage.scrollElementDown(driver, overlappedElementPage.scrollBlockElement());
 		overlappedElementPage.inputName().sendKeys("Name");
 	}
-
-
+	@Test
+	@Description("Тест shadowRoot элемента")
+	public void shadowDomTest() {
+		MainPage mainPage = new MainPage(driver);
+		ShadowDomPage shadowDomPage = mainPage.goToShadowDomPage();
+		WebElement shadowHost = shadowDomPage.shadowHostElement();
+		SearchContext shadowRoot = shadowHost.getShadowRoot();
+		WebElement buttonGenerate = shadowRoot.findElement(By.id("buttonGenerate"));
+		buttonGenerate.click();
+	}
 }

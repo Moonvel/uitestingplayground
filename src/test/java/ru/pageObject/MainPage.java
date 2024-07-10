@@ -28,6 +28,7 @@ public class MainPage {
 	private final By mouthOver = By.xpath("//a[contains(text(), 'Mouse Over')]");
 	private final By nonBreakingSpace = By.xpath("//a[contains(text(), 'Non-Breaking Space')]");
 	private final By overlappedElement = By.xpath("//a[contains(text(), 'Overlapped Element')]");
+	private final By shadowDom = By.xpath("//a[contains(text(), 'Shadow DOM')]");
 
 
 
@@ -94,6 +95,10 @@ public class MainPage {
 	public OverlappedElementPage goToOverlappedElementPage() {
 		driver.findElement(overlappedElement).click();
 		return new OverlappedElementPage(driver);
+	}
+	public ShadowDomPage goToShadowDomPage() {
+		driver.findElement(shadowDom).click();
+		return new ShadowDomPage(driver);
 	}
 
 }
